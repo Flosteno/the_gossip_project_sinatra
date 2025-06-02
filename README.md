@@ -14,7 +14,7 @@ A simple Ruby web application using Sinatra that allows users to anonymously pos
 - 🗑️ Delete all comments related to a gossip
 
 
-## Technologies
+## 🔧 Technologies Used
 
 - ruby 3.4.2
 - Sinatra
