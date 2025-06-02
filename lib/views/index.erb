@@ -8,11 +8,12 @@
 
     <h2>Voici tout les gossips</h2>
 
-    <% gossips.each do |gossip| %>
+    <% gossips.each_with_index do |gossip, index| %>
       <p>
         <%= gossip.author %><br/>
         <%= gossip.content %>
       </p>
+      <a href= "/gossips/<%= index %>/" >Voir ce potin</a>
     <% end %>
   </body>
 </html>
