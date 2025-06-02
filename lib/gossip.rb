@@ -38,5 +38,16 @@
   end
 
 
+  def update(id)
+
+    lignes = CSV.read('./db/gossip.csv')
+    lignes[id] = [@author, @content]
+
+    CSV.open('./db/gossip.csv', 'w') do |csv|
+      lignes.each {|ligne| csv << ligne}
+    end
+  end
+
+
 
 end
