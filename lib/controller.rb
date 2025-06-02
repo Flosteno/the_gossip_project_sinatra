@@ -1,4 +1,5 @@
 require 'gossip'
+require 'comment'
 class ApplicationController < Sinatra::Base
 
   get '/' do
@@ -15,7 +16,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/gossips/:id/' do
-    erb :show, locals: {gossip: Gossip.find(params['id'].to_i), id: params['id'].to_i}
+    id = params["id"].to_i
+    erb :show, locals: {gossip: Gossip.find(id), id: id, comments: Comment.all(id)}
   end
 
   get '/gossips/:id/edit/' do
@@ -26,6 +28,18 @@ class ApplicationController < Sinatra::Base
     Gossip.new(params["gossip_author"], params["gossip_content"]).update(params['id'].to_i)
     redirect "/gossips/#{params['id'].to_i}/"
   end
+
+  post '/gossips/:id/newC/' do
+    Comment.new(params["id"].to_i, params["comment_author"], params["comment_content"]).create_comment
+    redirect "/gossips/#{params["id"].to_i}/" 
+  end
+
+  post '/gossips/:id/deleteA/' do
+    Comment.delete_all(params["id"])
+    redirect "/gossips/#{params["id"].to_i}/"
+  end
+
+
     
   
 end
